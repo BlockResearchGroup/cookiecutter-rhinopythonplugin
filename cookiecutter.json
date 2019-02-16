@@ -1,4 +1,4 @@
 {
-	"title"   : "Name of the plugin",
-    "version" : "0.1.0",
+	"plugin_name"    : "Name of the plugin",
+    "plugin_version" : "0.1.0"
 }

@@ -6,26 +6,28 @@ import os
 import uuid
 
 plugin_name = "{{cookiecutter.plugin_name}}"
+plugin_src = os.getcwd()
 
-if os.path.exists(plugin_name):
-    if os.path.isdir(plugin_name):
+if os.path.exists(plugin_src):
+    if os.path.isdir(plugin_src):
 
         guid = str(uuid.uuid4())
 
-        src = plugin_name
-        dst = "{}\{{}\}".format(plugin_name, guid)
+        plugin_dst = plugin_src + "{" + guid + "}"
 
         try:
-            os.rename(src, dst)
+            os.rename(plugin_src, plugin_dst)
 
         except:
             pass
 
         else:
-            filepath = os.path.join(dst, 'dev', '__plugin__.py')
+            filepath = os.path.join(plugin_dst, 'dev', '__plugin__.py')
 
             with open(filepath, 'r') as f:
                 s = f.read()
 
             with open(filepath, 'w') as f:
-                f.write(s.replace("id = {}", "id = \{{}\}".format(guid)))
+                search = 'id = ""'
+                replace = 'id = ' + '"{' + guid + '}"'
+                f.write(s.replace(search, replace))

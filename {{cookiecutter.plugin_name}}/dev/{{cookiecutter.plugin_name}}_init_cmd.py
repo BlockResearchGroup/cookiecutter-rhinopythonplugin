@@ -2,7 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from __future__ import division
 
-import sciptcontext as sc
+import scriptcontext as sc
 
 
 __commandname__ = "{{cookiecutter.plugin_name}}_init"
