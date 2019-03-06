@@ -3,16 +3,10 @@ from __future__ import absolute_import
 from __future__ import division
 
 import scriptcontext as sc
-import clr
-
-clr.AddReference("Eto")
-clr.AddReference("Rhino.UI")
-
-import Rhino
-from compas_rhino.etoforms import SettingsForm
+import compas_rhino
 
 
-__commandname__ = "{{cookiecutter.plugin_name}}_init"
+__commandname__ = "{{cookiecutter.plugin_name}}_settings"
 
 
 def RunCommand(is_interactive):
@@ -21,10 +15,7 @@ def RunCommand(is_interactive):
 
     settings = sc.sticky["{{cookiecutter.plugin_name}}"]
 
-    dialog = SettingsForm(settings)
-
-    if dialog.ShowModal(Rhino.UI.RhinoEtoApp.MainWindow):
-        settings.update(dialog.settings)
+    compas_rhino.update_settings(settings)
 
 
 # ==============================================================================
